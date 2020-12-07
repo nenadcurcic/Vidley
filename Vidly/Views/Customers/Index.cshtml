@@ -1,0 +1,33 @@
+﻿@Model Vidly.ViewModels.ExcerciseListCostumersViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+<br />
+@if (Model.Customers.Count == 0)
+{
+    <text>No customers.</text>
+}
+else
+{
+    <table class="table table-­‐bordered table-­‐hover">
+        <tr>
+            <th width="40">Customer ID</th>
+            <th>Customer Name</th>
+            <th>Probni link</th>
+            <th>Membership Type</th>
+        </tr>
+
+        @foreach (var customer in Model.Customers)
+        {
+            <tr>
+                <td>@customer.Id</td>
+                <td>@Html.ActionLink((string)customer.Name + " " + (string) customer.ShureName, "Edit", new { Id = customer.Id})</td>
+                <td>@customer.MembershipType.Name</td>
+            </tr>
+        }
+    </table>
+}
+
